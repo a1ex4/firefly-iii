@@ -10,6 +10,7 @@ pipeline {
     }
     stage('Change to dev') {
       steps {
+        sh 'git branch'
         sh 'git checkout develop'
       }
     }
