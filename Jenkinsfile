@@ -1,10 +1,5 @@
 pipeline {
-  agent {
-    node {
-      label 'label'
-    }
-
-  }
+  agent any
   stages {
     stage('Sync repo') {
       steps {
