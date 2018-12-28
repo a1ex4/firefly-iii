@@ -9,9 +9,9 @@ pipeline {
         sh 'git remote -v'
       }
     }
-    stage('Change to dev') {
+    stage('Build image') {
       steps {
-        sh 'docker build -t testImage .'
+        sh 'docker build -t testimage .'
       }
     }
   }
