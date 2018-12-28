@@ -6,6 +6,7 @@ pipeline {
         sh 'git fetch upstream'
         sh 'git checkout develop'
         sh 'git merge upstream/develop'
+        sh 'git remote -v'
         sh 'git push origin develop'
       }
     }
