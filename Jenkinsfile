@@ -1,9 +1,9 @@
 pipeline {
   agent any
   stages {
-    stage('Sync repo') {
+    stage('Test') {
       steps {
-        svn(url: 'https://ci.a1ex.space/blue/rest/organizations/jenkins/scm/git/organizations/ff/repositories/ff/?apiUrl=https://github.com/firefly-iii/firefly-iii.git', poll: true)
+        sh 'git remote -v'
       }
     }
   }
