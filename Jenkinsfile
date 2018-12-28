@@ -4,6 +4,8 @@ pipeline {
     stage('Sync repo') {
       steps {
         sh 'git fetch upstream'
+        sh 'git checkout develop'
+        sh 'git merge upstream/develop'
       }
     }
     stage('Change to dev') {
