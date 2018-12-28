@@ -1,9 +1,9 @@
 pipeline {
   agent any
   stages {
-    stage('Add upstream') {
+    stage('Sync repo') {
       steps {
-        sh 'git remote -v'
+        sh 'git fetch upstream'
       }
     }
     stage('Change to dev') {
