@@ -6,6 +6,7 @@ pipeline {
         sh 'git fetch upstream'
         sh 'git checkout develop'
         sh 'git merge upstream/develop'
+        sh 'git push origin develop'
       }
     }
     stage('Change to dev') {
