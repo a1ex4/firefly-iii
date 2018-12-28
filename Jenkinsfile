@@ -7,6 +7,8 @@ pipeline {
         sh 'git checkout develop'
         sh 'git merge upstream/develop'
         sh 'git remote -v'
+        sh 'git describe --tags'
+        sh 'git rev-parse --short HEAD'
       }
     }
     stage('Build image') {
