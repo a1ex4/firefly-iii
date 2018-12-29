@@ -4,7 +4,7 @@ pipeline {
     stage('Sync repo') {
       steps {
         sh 'git fetch upstream'
-        sh 'git checkout develop'
+        sh 'git checkout upstream/develop'
         sh 'git merge upstream/develop'
         sh 'git remote -v'
         sh 'git describe --tags'
