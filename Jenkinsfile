@@ -9,12 +9,12 @@ pipeline {
     }
     stage('Build image') {
       steps {
-        sh 'docker build -t a1ex4/rpi-firefly-iii:dev-${git describe --tags} .'
+        sh 'docker build -t a1ex4/rpi-firefly-iii:dev-$(git describe --tags) .'
       }
     }
     stage('Upload image') {
       steps {
-        sh 'docker push a1ex4/rpi-firefly-iii:dev-${git describe --tags}'
+        sh 'docker push a1ex4/rpi-firefly-iii:dev-$(git describe --tags)'
       }
     }
   }
