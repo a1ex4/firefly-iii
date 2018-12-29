@@ -6,14 +6,11 @@ pipeline {
         sh 'git fetch upstream'
         sh 'git checkout upstream/develop'
         sh 'git merge upstream/develop'
-        sh 'git remote -v'
-        sh 'git describe --tags'
-        sh 'git rev-parse --short HEAD'
       }
     }
     stage('Build image') {
       steps {
-        sh 'docker build -t testimage .'
+        sh 'docker build -t a1ex4/rpi-firefly-iii:dev-${git describe --tags} .'
       }
     }
   }
