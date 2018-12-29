@@ -5,7 +5,6 @@ pipeline {
       steps {
         sh 'git fetch upstream'
         sh 'git checkout upstream/develop'
-        sh 'git merge upstream/develop'
       }
     }
     stage('Build image') {
