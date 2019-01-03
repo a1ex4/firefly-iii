@@ -2,13 +2,22 @@ pipeline {
   agent any
   stages {
     stage('Set develop tag') {
-      when {
-        branch 'develop'
-      }
-      steps {
-        sh 'echo \'we on develop\''
-        sh 'IMAGE_TAG=\'develop\''
-        sh 'echo $IMAGE_TAG'
+      parallel {
+        stage('Set develop tag') {
+          when {
+            branch 'develop'
+          }
+          steps {
+            sh 'echo \'we on develop\''
+            sh 'IMAGE_TAG=\'develop\''
+            sh 'echo $IMAGE_TAG'
+          }
+        }
+        stage('Test') {
+          steps {
+            sh 'echo \'test stage\''
+          }
+        }
       }
     }
     stage('Set release tag') {
