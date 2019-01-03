@@ -11,14 +11,12 @@ pipeline {
             sh 'docker build -t a1ex4/rpi-firefly-iii:develop .'
           }
         }
-        stage('Build release imge') {
+        stage('Build release image') {
           when {
             branch 'master'
           }
           steps {
-            sh 'echo \'we on master\''
-            sh 'IMAGE_TAG=$(git describe --abbrev=0 --tags)'
-            sh "docker build -t a1ex4/rpi-firefly-iii:$IMAGE_TAG ."
+            sh "docker build -t a1ex4/rpi-firefly-iii:$(git describe --abbrev=0 --tags) ."
           }
         }
       }
