@@ -18,7 +18,7 @@ pipeline {
           steps {
             sh 'echo \'we on master\''
             sh 'IMAGE_TAG=\'release\''
-            sh 'git describe --tags'
+            sh 'git describe --abbrev=0 --tags'
           }
         }
       }
