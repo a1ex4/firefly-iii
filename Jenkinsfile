@@ -5,7 +5,7 @@ pipeline {
       parallel {
         stage('Set develop tag') {
           when {
-            branch 'develop'
+            branch 'master'
           }
           steps {
             sh 'echo \'we on develop\''
@@ -14,6 +14,9 @@ pipeline {
           }
         }
         stage('Test') {
+           when {
+            branch 'develop'
+          }
           steps {
             sh 'echo \'test stage\''
           }
