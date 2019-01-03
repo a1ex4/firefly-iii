@@ -7,7 +7,7 @@ pipeline {
       }
       steps {
         sh 'echo \'we on develop\''
-        sh 'IMAGE_TAG = \'develop\''
+        sh 'IMAGE_TAG=\'develop\''
         sh 'echo $IMAGE_TAG'
       }
     }
@@ -17,7 +17,7 @@ pipeline {
       }
       steps {
         sh 'echo \'we on master\''
-        sh 'IMAGE_TAG = \'master\''
+        sh 'IMAGE_TAG=\'master\''
         sh 'echo $IMAGE_TAG'
       }
     }
