@@ -1,22 +1,6 @@
 pipeline {
   agent any
   stages {
-    stage('Build develop image') {
-      when {
-        branch 'develop'
-      }
-      steps {
-        sh 'docker build -t a1ex4/rpi-firefly-iii:develop .'
-      }
-    }
-    stage('Push develop image') {
-      when {
-        branch 'develop'
-      }
-      steps {
-        sh 'docker push a1ex4/rpi-firefly-iii:develop'
-      }
-    }
     stage('Build release image') {
       when {
         branch 'master'
@@ -39,6 +23,22 @@ pipeline {
       }
       steps {
         sh 'docker push a1ex4/rpi-firefly-iii:latest'
+      }
+    }
+    stage('Build develop image') {
+      when {
+        branch 'develop'
+      }
+      steps {
+        sh 'docker build -t a1ex4/rpi-firefly-iii:develop .'
+      }
+    }
+    stage('Push develop image') {
+      when {
+        branch 'develop'
+      }
+      steps {
+        sh 'docker push a1ex4/rpi-firefly-iii:develop'
       }
     }
   }
