@@ -1,29 +1,44 @@
 pipeline {
   agent any
   stages {
-    stage('Build image') {
-      parallel {
-        stage('Build develop image') {
-          when {
-            branch 'develop'
-          }
-          steps {
-            sh 'docker build -t a1ex4/rpi-firefly-iii:develop .'
-          }
-        }
-        stage('Build release image') {
-          when {
-            branch 'master'
-          }
-          steps {
-            sh 'docker build -t a1ex4/rpi-firefly-iii:$(git describe --abbrev=0 --tags) -t a1ex4/rpi-firefly-iii:latest  .'
-          }
-        }
+    stage('Build develop image') {
+      when {
+        branch 'develop'
+      }
+      steps {
+        sh 'docker build -t a1ex4/rpi-firefly-iii:develop .'
       }
     }
-    stage('Echo image tag') {
+    stage('Push develop image') {
+      when {
+        branch 'develop'
+      }
       steps {
-        sh 'echo $IMAGE_TAG'
+        sh 'docker push a1ex4/rpi-firefly-iii:develop'
+      }
+    }
+    stage('Build release image') {
+      when {
+        branch 'master'
+      }
+      steps {
+        sh 'docker build -t a1ex4/rpi-firefly-iii:$(git describe --abbrev=0 --tags) -t a1ex4/rpi-firefly-iii:latest .'
+      }
+    }
+    stage('Push version tagged image') {
+      when {
+        branch 'master'
+      }
+      steps {
+        sh 'docker push a1ex4/rpi-firefly-iii:$(git describe --abbrev=0 --tags)'
+      }
+    }
+    stage('Push version tagged image') {
+      when {
+        branch 'master'
+      }
+      steps {
+        sh 'docker push a1ex4/rpi-firefly-iii:latest'
       }
     }
   }
