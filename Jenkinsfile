@@ -1,24 +1,24 @@
 pipeline {
   agent any
   stages {
-    stage('Set image tag') {
+    stage('Build image') {
       parallel {
-        stage('Set develop tag') {
+        stage('Build develop image') {
           when {
             branch 'develop'
           }
           steps {
-            sh 'echo \'we on develop\''
-            sh 'IMAGE_TAG=\'develop\''
+            sh 'sh \'docker build -t a1ex4/rpi-firefly-iii:develop .\''
           }
         }
         stage('Set release tag') {
-           when {
+          when {
             branch 'master'
           }
           steps {
             sh 'echo \'we on master\''
             sh 'IMAGE_TAG=\'release\''
+            sh 'git describe --tags'
           }
         }
       }
