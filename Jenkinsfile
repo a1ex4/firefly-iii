@@ -8,7 +8,7 @@ pipeline {
       steps {
         sh 'echo \'we on develop\''
         sh 'IMAGE_TAG = \'develop\''
-        sh 'echo IMAGE_TAG'
+        sh 'echo $IMAGE_TAG'
       }
     }
     stage('Set release tag') {
@@ -18,7 +18,7 @@ pipeline {
       steps {
         sh 'echo \'we on master\''
         sh 'IMAGE_TAG = \'master\''
-        sh 'echo IMAGE_TAG'
+        sh 'echo $IMAGE_TAG'
       }
     }
   }
