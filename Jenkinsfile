@@ -33,7 +33,7 @@ pipeline {
         sh 'docker push a1ex4/rpi-firefly-iii:$(git describe --abbrev=0 --tags)'
       }
     }
-    stage('Push version tagged image') {
+    stage('Push latest tagged image') {
       when {
         branch 'master'
       }
