@@ -2,9 +2,6 @@ pipeline {
   agent any
   stages {
     stage('Build release image') {
-      when {
-        branch 'master'
-      }
       steps {
         sh 'docker build -t a1ex4/rpi-firefly-iii:$(git describe --abbrev=0 --tags) -t a1ex4/rpi-firefly-iii:latest .'
       }
