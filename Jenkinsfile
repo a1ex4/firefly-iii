@@ -17,7 +17,7 @@ pipeline {
           }
           steps {
             sh 'echo \'we on master\''
-            sh 'IMAGE_TAG=$(git describe --abbrev=0 --tags)'
+            sh "IMAGE_TAG=$(git describe --abbrev=0 --tags)"
             sh "docker build -t a1ex4/rpi-firefly-iii:$IMAGE_TAG ."
           }
         }
