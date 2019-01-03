@@ -1,20 +1,31 @@
 pipeline {
   agent any
   stages {
-    stage('Sync repo') {
-      steps {
-        sh 'git fetch upstream'
-        sh 'git checkout upstream/develop'
-      }
-    }
     stage('Build image') {
-      steps {
-        sh 'docker build -t a1ex4/rpi-firefly-iii:develop .'
+      parallel {
+        stage('Build develop image') {
+          when {
+            branch 'develop'
+          }
+          steps {
+            sh 'docker build -t a1ex4/rpi-firefly-iii:develop .'
+          }
+        }
+        stage('Set release tag') {
+          when {
+            branch 'master'
+          }
+          steps {
+            sh 'echo \'we on master\''
+            sh 'IMAGE_TAG=\'release\''
+            sh 'git describe --tags'
+          }
+        }
       }
     }
-    stage('Upload image') {
+    stage('Echo image tag') {
       steps {
-        sh 'docker push a1ex4/rpi-firefly-iii:develop'
+        sh 'echo $IMAGE_TAG'
       }
     }
   }
