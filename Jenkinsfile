@@ -25,7 +25,7 @@ pipeline {
         sh 'docker push a1ex4/rpi-firefly-iii:latest'
       }
     }
-    stage('Build develop image') {
+    stage('Build develop  image') {
       when {
         branch 'develop'
       }
