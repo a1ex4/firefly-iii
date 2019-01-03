@@ -1,14 +1,25 @@
 pipeline {
   agent any
   stages {
-    stage('Build image') {
+    stage('Set develop tag') {
+      when {
+        branch 'develop'
+      }
       steps {
-        sh 'docker build -t a1ex4/rpi-firefly-iii:develop .'
+        sh 'we on develop'
+        sh 'IMAGE_TAG = develop'
+        sh 'echo IMAGE_TAG'
       }
     }
-    stage('Upload image') {
+    
+    stage('Set release tag') {
+      when {
+        branch 'master'
+      }
       steps {
-        sh 'docker push a1ex4/rpi-firefly-iii:develop'
+        sh 'we on master'
+        sh 'IMAGE_TAG = master'
+        sh 'echo IMAGE_TAG'
       }
     }
   }
